@@ -4,7 +4,6 @@ import com.github.nyaon08.rtustudio.og.OreGen;
 import kr.rtuserver.framework.bukkit.api.configuration.RSConfiguration;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter

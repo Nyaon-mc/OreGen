@@ -9,13 +9,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Fence;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockFromToEvent;
 
 public class BlockFlowListener extends RSListener<OreGen> {
-
-    private static final String FENCE_SUFFIX = "_FENCE";
 
     public BlockFlowListener(OreGen plugin) {
         super(plugin);
@@ -24,9 +24,11 @@ public class BlockFlowListener extends RSListener<OreGen> {
     @EventHandler
     public void onCobbleGeneration(BlockFromToEvent event) {
         Block toBlock = event.getToBlock();
-        Block adjacentBlock = toBlock.getRelative(event.getFace());
+        Block fenceBlock = toBlock.getRelative(BlockFace.DOWN);
 
-        if (toBlock.getType() == Material.AIR && adjacentBlock.getType().name().endsWith(FENCE_SUFFIX)) {
+        if (toBlock.getType() == Material.AIR &&
+                fenceBlock.getBlockData() instanceof Fence) {
+
             event.setCancelled(true);
             generateCustomBlock(toBlock);
         }

@@ -17,8 +17,9 @@ public class MaterialSelector {
         for (String gen : oreGenConfig.getOres()) {
             String[] split = gen.split(":");
             if (split.length < 2) continue;
+            
             String materialStr = gen.substring(0, gen.lastIndexOf(':'));
-            int probability  = Integer.parseInt(split[split.length - 1]);
+            int probability = Integer.parseInt(split[split.length - 1]);
 
             if (CustomItems.from(materialStr) != null) {
                 defaultOres.add(new OgMaterial(materialStr, probability));
