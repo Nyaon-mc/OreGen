@@ -22,7 +22,7 @@ public class BlockFlowListener extends RSListener<OreGen> {
     }
 
     @EventHandler
-    public void onCobbleGeneration(BlockFromToEvent event) {
+    public void onBlockFromToEvent(BlockFromToEvent event) {
         Block toBlock = event.getToBlock();
         Block fenceBlock = toBlock.getRelative(BlockFace.DOWN);
 
