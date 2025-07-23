@@ -14,6 +14,7 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Fence;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockFromToEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class BlockFlowListener extends RSListener<OreGen> {
 
@@ -28,18 +29,24 @@ public class BlockFlowListener extends RSListener<OreGen> {
 
         if (toBlock.getType() == Material.AIR &&
                 fenceBlock.getBlockData() instanceof Fence) {
-
-            event.setCancelled(true);
-            generateCustomBlock(toBlock);
+            ItemStack itemStack = new ItemStack(fenceBlock.getType());
+            if (getPlugin().getOreGenConfig().isFenceAvailable(itemStack)) {
+                event.setCancelled(true);
+                getPlugin().getServer().getScheduler().runTaskLater(getPlugin(), () -> {
+                    generateCustomBlock(toBlock, fenceBlock);
+                }, getPlugin().getOreGenConfig().getTick(itemStack));
+            }
         }
     }
 
-    private void generateCustomBlock(Block block) {
+    private void generateCustomBlock(Block block, Block fenceBlock) {
         Location location = block.getLocation();
         World world = location.getWorld();
 
         if (world != null) {
-            String materialStr = MaterialUtil.getRandomBlockData(new MaterialSelector().chooseBlock(getPlugin()));
+            ItemStack itemStack = new ItemStack(fenceBlock.getType());
+            String materialStr = MaterialUtil.getRandomBlockData(new MaterialSelector().chooseBlock(getPlugin(), itemStack));
+            if (materialStr == null) return;
             BlockData blockData = CustomBlocks.from(materialStr);
             if (blockData != null) {
                 block.setBlockData(blockData);

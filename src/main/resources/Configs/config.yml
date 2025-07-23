@@ -1,0 +1,35 @@
+# ╔ Developed by ════════════════════════════════════╗
+# ║ ░█▀▄░░▀█▀░░█░█░░░░░█▀▀░░▀█▀░░█░█░░█▀▄░░▀█▀░░█▀█░ ║
+# ║ ░█▀▄░░░█░░░█░█░░░░░▀▀█░░░█░░░█░█░░█░█░░░█░░░█░█░ ║
+# ║ ░▀░▀░░░▀░░░▀▀▀░░░░░▀▀▀░░░▀░░░▀▀▀░░▀▀░░░▀▀▀░░▀▀▀░ ║
+# ╚══════════════════════════════════════════════════╝
+# 
+# This is the configuration for OreGen.
+# If you have any questions or need assistance,
+# please join our Discord server and ask for help from nyaon08!
+# 
+# 이것은 OreGen의 구성입니다.
+# 질문이 있거나 도움이 필요하시면,
+# 저희 Discord 서버에 가입하셔서 nyaon08에게 도움을 요청해 주세요!
+
+
+version: 1
+fence:
+  minecraft:oak_fence:
+    tick: 20
+    ore:
+      - minecraft:stone:40
+      - minecraft:coal_ore:20
+      - minecraft:iron_ore:10
+      - minecraft:gold_ore:8
+      - minecraft:diamond_ore:4
+      - minecraft:emerald_ore:2
+  minecraft:nether_brick_fence:
+    tick: 15
+    ore:
+      - minecraft:stone:40
+      - minecraft:coal_ore:20
+      - minecraft:iron_ore:10
+      - minecraft:gold_ore:8
+      - minecraft:diamond_ore:4
+      - minecraft:emerald_ore:2
